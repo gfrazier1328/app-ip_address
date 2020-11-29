@@ -14,8 +14,7 @@ const IPCIDR = require('ip-cidr');
  * @return {string} (firstIpAddress) - An IPv4 address.
  */
 function getFirstIpAddress(cidrStr, callback) {
- getIpv4MappedIpv6Address()
- 
+
   // Initialize return arguments for callback
   let firstIpAddress = null;
   let callbackError = null;
@@ -85,7 +84,6 @@ function main() {
     }
   }
 }
- 
 /*
   Call main to run it.
 */
