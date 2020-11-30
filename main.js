@@ -45,7 +45,7 @@ const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
   // The IAP convention is to pass returned data as the first argument and error
   // data as the second argument to the callback function.
     
-  return callback(firstIpAddress, callbackError);
+  //return callback(firstIpAddress, callbackError);
     }
 
 class IpAddress {

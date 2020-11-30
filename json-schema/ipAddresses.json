@@ -4,6 +4,10 @@
   "title": "IP Addresses",
   "description": "IP Address parameters and returned data.",
   "definitions": {
+    "ipv4CIDR": {},
+    "hostIpv4AndIpv6Address": {}
+  }
+    
     "ipv4CIDR": {
       "type": "string",
       "description": "An IPv4 subnet expressed in CIDR notation.",
