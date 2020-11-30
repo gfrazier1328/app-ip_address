@@ -6,6 +6,23 @@
 */
 const IPCIDR = require('ip-cidr');
 
+/*
+  Import the built-in path module.
+  See https://nodejs.org/api/path.html
+  The path module provides utilities for working with file and directory paths.
+  IAP requires the path module to access local file modules.
+  The path module exports an object.
+  Assign the imported object to variable path.
+*/
+const path = require('path');
+
+/**
+ * Import helper function module located in the same directory
+ * as this module. IAP requires the path object's join method
+ * to unequivocally locate the file module.
+ */
+const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
+
 /**
  * Calculate and return the first host IP address from a CIDR subnet.
  * @param {string} cidrStr - The IPv4 subnet expressed
@@ -14,7 +31,7 @@ const IPCIDR = require('ip-cidr');
  * @return {string} (firstIpAddress) - An IPv4 address.
  */
 function getFirstIpAddress(cidrStr, callback) {
-
+  
   // Initialize return arguments for callback
   let firstIpAddress = null;
   let callbackError = null;
@@ -28,7 +45,7 @@ function getFirstIpAddress(cidrStr, callback) {
     from: 1,
     limit: 1
   };
-
+  
   // Use the object's isValid() method to verify the passed CIDR.
   if (!cidr.isValid()) {
     // If the passed CIDR is invalid, set an error message.
@@ -42,9 +59,9 @@ function getFirstIpAddress(cidrStr, callback) {
   // Node.js convention is to pass error data as the first argument to a callback.
   // The IAP convention is to pass returned data as the first argument and error
   // data as the second argument to the callback function.
+    
   return callback(firstIpAddress, callbackError);
-}
-
+    }
 
 /*
   This section is used to test function and log any errors.
@@ -81,6 +98,16 @@ function main() {
       console.log(`  IPv4 ${sampleIpv4s[i]} mapped to IPv6 Address: ${mappedAddress}`);
     } else {
       console.error(`  Problem converting IPv4 ${sampleIpv4s[i]} into a mapped IPv6 address.`);
+//Below is another delete if needed next 6 lines
+var local_color = "green";
+var local_getIpv6 = function(ipv4) {
+  console.log(`Parameter ipv4 has value ${ipv4}`);
+};
+
+module.exports.color = local_color;
+module.exports.getIpv6 = local_getIpv6;
+
+
     }
   }
 }
