@@ -5,7 +5,22 @@
   Assign the class definition to variable IPCIDR.
 */
 const IPCIDR = require('ip-cidr');
+/*
+  Import the built-in path module.
+  See https://nodejs.org/api/path.html
+  The path module provides utilities for working with file and directory paths.
+  IAP requires the path module to access local file modules.
+  The path module exports an object.
+  Assign the imported object to variable path.
+*/
+const path = require('path');
 
+/**
+ * Import helper function module located in the same directory
+ * as this module. IAP requires the path object's join method
+ * to unequivocally locate the file module.
+ */
+const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
 /**
  * Calculate and return the first host IP address from a CIDR subnet.
  * @param {string} cidrStr - The IPv4 subnet expressed
@@ -103,8 +118,7 @@ function main() {
   // Create some test data for getIpv4MappedIpv6Address, both valid and invalid.
   let sampleIpv4s = [ '172.16.10.1', '172.16.10.0/24', '172.16.10.0 255.255.255.0', '172.16.256.1', '1.1.1.-1'];
   let sampleIpv4sLen = sampleIpv4s.length;
-
-  // Iterate over sampleCidrs and pass the element's value to getFirstIpAddress().
+   // Iterate over sampleCidrs and pass the element's value to getFirstIpAddress().
   for (let i = 0; i < sampleCidrsLen; i++) {
     console.log(`\n--- Test Number ${i + 1} getFirstIpAddress(${sampleCidrs[i]}) ---`);
     // Call getFirstIpAddress and pass the test subnet and an anonymous callback function.
