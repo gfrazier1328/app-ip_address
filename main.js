@@ -14,8 +14,7 @@ const IPCIDR = require('ip-cidr');
  * @return {string} (firstIpAddress) - An IPv4 address.
  */
 function getFirstIpAddress(cidrStr, callback) {
-
-  // Initialize return arguments for callback
+    // Initialize return arguments for callback
   let firstIpAddress = null;
   let callbackError = null;
 
@@ -28,7 +27,7 @@ function getFirstIpAddress(cidrStr, callback) {
     from: 1,
     limit: 1
   };
-
+getIpv4MappedIpv6Address()
   // Use the object's isValid() method to verify the passed CIDR.
   if (!cidr.isValid()) {
     // If the passed CIDR is invalid, set an error message.
